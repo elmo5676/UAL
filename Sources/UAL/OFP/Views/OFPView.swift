@@ -30,6 +30,9 @@ public struct OFPView: View {
     
     public var body: some View {
         VStack {
+            Button {
+                filePickerIsPresented = true }
+        label: { Text("Get OFP") }
             Group {
                 ofpValue("Call Sign", isd?.callsign)
                 ofpValue("DEP/ARR", "\(isd?.dep ?? "")/\(isd?.arr ?? "")")
