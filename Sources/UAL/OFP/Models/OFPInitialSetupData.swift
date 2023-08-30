@@ -6,32 +6,58 @@
 // ********************** OFPInitialSetupData *********************************
 
 
-import Foundation
+import SwiftUI
 
-public struct OFPInitialSetupData {
+public class OFPInitialSetupData: ObservableObject {
     
-    let callsign: String?
-    let dep: String?
-    let arr: String?
-    let busType: String?
-    let routeDist: String?
-    let idlePerf: String?
-    let costIndex: String?
-    let altTemp: String?
-    let trop: String?
-    let zfw: String?
-    let tow: String?
-    let towLimit: String?
-    let lw: String?
-    let flightTime: String?
-    let alternate: String?
-    let fuelAlternate: String?
-    let fuelMinTO: String?
-    let fuelPlanGate: String?
-    let fuelREMF: String?
+    public static var shared = OFPInitialSetupData()
+    
+//    public init(callsign: String? = nil, dep: String? = nil, arr: String? = nil, busType: String? = nil, routeDist: String? = nil, idlePerf: String? = nil, costIndex: String? = nil, altTemp: String? = nil, trop: String? = nil, zfw: String? = nil, tow: String? = nil, towLimit: String? = nil, lw: String? = nil, flightTime: String? = nil, alternate: String? = nil, fuelAlternate: String? = nil, fuelMinTO: String? = nil, fuelPlanGate: String? = nil, fuelREMF: String? = nil, route: String? = nil) {
+//        self.callsign = callsign
+//        self.dep = dep
+//        self.arr = arr
+//        self.busType = busType
+//        self.routeDist = routeDist
+//        self.idlePerf = idlePerf
+//        self.costIndex = costIndex
+//        self.altTemp = altTemp
+//        self.trop = trop
+//        self.zfw = zfw
+//        self.tow = tow
+//        self.towLimit = towLimit
+//        self.lw = lw
+//        self.flightTime = flightTime
+//        self.alternate = alternate
+//        self.fuelAlternate = fuelAlternate
+//        self.fuelMinTO = fuelMinTO
+//        self.fuelPlanGate = fuelPlanGate
+//        self.fuelREMF = fuelREMF
+//        self.route = route
+//    }
     
     
-    let route: String?
+    @Published var callsign: String? = nil
+    @Published var dep: String? = nil
+    @Published var arr: String? = nil
+    @Published var busType: String? = nil
+    @Published var routeDist: String? = nil
+    @Published var idlePerf: String? = nil
+    @Published var costIndex: String? = nil
+    @Published var altTemp: String? = nil
+    @Published var trop: String? = nil
+    @Published var zfw: String? = nil
+    @Published var tow: String? = nil
+    @Published var towLimit: String? = nil
+    @Published var lw: String? = nil
+    @Published var flightTime: String? = nil
+    @Published var alternate: String? = nil
+    @Published var fuelAlternate: String? = nil
+    @Published var fuelMinTO: String? = nil
+    @Published var fuelPlanGate: String? = nil
+    @Published var fuelREMF: String? = nil
+    
+    
+    @Published var route: String?
 //    let <#here#>: String?
 //    let <#here#>: String?
 //    let <#here#>: String?

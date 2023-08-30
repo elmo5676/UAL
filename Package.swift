@@ -2,6 +2,7 @@
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
+import AppleProductTypes
 
 let package = Package(
     name: "UAL",
@@ -22,3 +23,26 @@ let package = Package(
             dependencies: ["UAL"]),
     ]
 )
+
+
+//extension PackageDescription.Product {
+//  public static func iOSApplication(
+//      name: String,
+//      targets: [String],
+//      bundleIdentifier: String? = nil,
+//      teamIdentifier: String? = nil,
+//      displayVersion: String? = nil,
+//      bundleVersion: String? = nil,
+//      iconAssetName: String? = nil,
+//      accentColorAssetName: String? = nil,
+//      supportedDeviceFamilies: [PackageDescription.ProductSetting.IOSAppInfo.DeviceFamily],
+//      supportedInterfaceOrientations: [PackageDescription.ProductSetting.IOSAppInfo.InterfaceOrientation],
+//      capabilities: [PackageDescription.ProductSetting.IOSAppInfo.Capability] = [],
+//      additionalInfoPlistContentFilePath: String? = nil
+//  ) -> PackageDescription.Product {
+//
+//  }
+//}
+
+
+

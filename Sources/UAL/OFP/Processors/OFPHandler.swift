@@ -12,19 +12,19 @@ public struct OFPHandler {
     
     let ofp: OFP?
     
-    let ofpIinitialSetup: OFPInitialSetupData?
+    let ois: OFPInitialSetupData = .shared
     
     public init(ofpUrl: URL? = nil) {
         var ofpContents: String?
         if let ofpUrl {
             ofpContents = OFPHandler.getOFP(fltPlan: ofpUrl)
-            ofpIinitialSetup = OFPHandler.getInitialSetupData(from: ofpUrl)
+            OFPHandler.getInitialSetupData(from: ofpUrl)
         } else {
-            guard let url = Bundle.module_.url(forResource: "UAL0205", withExtension: "pdf") else { ofp = nil; ofpIinitialSetup = nil; return }
+            guard let url = Bundle.module_.url(forResource: "UAL0205", withExtension: "pdf") else { ofp = nil; return }
 //            guard let url = Bundle.module_.url(forResource: "UAL0430", withExtension: "pdf") else { ofp = nil; ofpIinitialSetup = nil; return }
 //            guard let url = Bundle.module_.url(forResource: "UAL1269", withExtension: "pdf") else { ofp = nil; ofpIinitialSetup = nil; return }
             ofpContents = OFPHandler.getOFP(fltPlan: url)
-            ofpIinitialSetup = OFPHandler.getInitialSetupData(from: url)
+            OFPHandler.getInitialSetupData(from: url)
             
             
 //            let testPrint = PDFHandler.getAttributedPDFContents(from: url)?.string
@@ -57,10 +57,9 @@ public struct OFPHandler {
     
     
     
-    static func getInitialSetupData(from: URL?) -> OFPInitialSetupData? {
-        var result: OFPInitialSetupData?
-        guard let from else { return nil }
-        guard let ofpContents = OFPHandler.getOFP(fltPlan: from) else { return nil }
+    static func getInitialSetupData(from: URL?) {
+        guard let from else { return }
+        guard let ofpContents = OFPHandler.getOFP(fltPlan: from) else { return }
         let callSign = ofpContents.getFirstMatch(for: "UAL[0-9]{3,4}")?.replacingOccurrences(of: "UAL", with: "")
         let dep = ofpContents.getFirstMatch(for: "[0-9]{2}[A-Z]{3}[0-9]{2} [A-Z]{4}/[A-Z]{3}")?.components(separatedBy: " ").last?.components(separatedBy: "/").last
         let arr = ofpContents.getFirstMatch(for: "[A-Z0-9]{4} [A-Z]{4}/[A-Z]{3} ON")?.split(" ")[1].split("/").last
@@ -85,29 +84,26 @@ public struct OFPHandler {
         let towLimit = weightsLimits?[1]
         print(weightsLimits)
         
-        
-        result = OFPInitialSetupData(callsign: callSign,
-                                     dep: dep,
-                                     arr: arr,
-                                     busType: busType,
-                                     routeDist: routeDist,
-                                     idlePerf: idlePerf,
-                                     costIndex: costIndex,
-                                     altTemp: altTemp,
-                                     trop: trop,
-                                     zfw: zfw,
-                                     tow: tow,
-                                     towLimit: towLimit,
-                                     lw: lw,
-                                     flightTime: nil,
-                                     alternate: nil,
-                                     fuelAlternate: nil,
-                                     fuelMinTO: nil,
-                                     fuelPlanGate: nil,
-                                     fuelREMF: nil,
-                                     route: nil)
-        
-        return result
+        OFPInitialSetupData.shared.callsign = callSign
+        OFPInitialSetupData.shared.dep = dep
+        OFPInitialSetupData.shared.arr = arr
+        OFPInitialSetupData.shared.busType = busType
+        OFPInitialSetupData.shared.routeDist = routeDist
+        OFPInitialSetupData.shared.idlePerf = idlePerf
+        OFPInitialSetupData.shared.costIndex = costIndex
+        OFPInitialSetupData.shared.altTemp = altTemp
+        OFPInitialSetupData.shared.trop = trop
+        OFPInitialSetupData.shared.zfw = zfw
+        OFPInitialSetupData.shared.tow = tow
+        OFPInitialSetupData.shared.towLimit = towLimit
+        OFPInitialSetupData.shared.lw = lw
+        OFPInitialSetupData.shared.flightTime = "nil"
+        OFPInitialSetupData.shared.alternate = "nil"
+        OFPInitialSetupData.shared.fuelAlternate = "nil"
+        OFPInitialSetupData.shared.fuelMinTO = "nil"
+        OFPInitialSetupData.shared.fuelPlanGate = "nil"
+        OFPInitialSetupData.shared.fuelREMF = "nil"
+        OFPInitialSetupData.shared.route = "nil"
     }
     
     

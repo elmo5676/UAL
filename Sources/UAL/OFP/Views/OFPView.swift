@@ -11,12 +11,10 @@ import UIKit
 
 public struct OFPView: View {
     
-    let isd: OFPInitialSetupData?
+    @ObservedObject var isd: OFPInitialSetupData = .shared
+    @State var fileUrl: URL? = nil
     
-    public init() {
-        let ofpHandler = OFPHandler()
-        isd = ofpHandler.ofpIinitialSetup
-    }
+    public init() {}
     
     func ofpValue(_ title: String, _ value: String?) -> some View {
         HStack {
@@ -34,26 +32,26 @@ public struct OFPView: View {
                 filePickerIsPresented = true }
         label: { Text("Get OFP") }
             Group {
-                ofpValue("Call Sign", isd?.callsign)
-                ofpValue("DEP/ARR", "\(isd?.dep ?? "")/\(isd?.arr ?? "")")
-                ofpValue("AC Type", isd?.busType)
-                ofpValue("FP Dist", isd?.routeDist)
-                ofpValue("Idle/Perf", isd?.idlePerf)
-                ofpValue("CI", isd?.costIndex)
-                ofpValue("ALT / TEMP", isd?.altTemp)
-                ofpValue("TROP", isd?.trop)
-                ofpValue("ZFW", isd?.zfw)
-                ofpValue("TOW", isd?.tow)
+                ofpValue("Call Sign", isd.callsign)
+                ofpValue("DEP/ARR", "\(isd.dep ?? "")/\(isd.arr ?? "")")
+                ofpValue("AC Type", isd.busType)
+                ofpValue("FP Dist", isd.routeDist)
+                ofpValue("Idle/Perf", isd.idlePerf)
+                ofpValue("CI", isd.costIndex)
+                ofpValue("ALT / TEMP", isd.altTemp)
+                ofpValue("TROP", isd.trop)
+                ofpValue("ZFW", isd.zfw)
+                ofpValue("TOW", isd.tow)
             }
             Group {
-                ofpValue("TOW L", isd?.towLimit)
-                ofpValue("LW", isd?.lw)
-                ofpValue("Flight Time", isd?.flightTime)
-                ofpValue("Alternate", isd?.alternate)
-                ofpValue("Alt Fuel", isd?.fuelAlternate)
-                ofpValue("Min TO", isd?.fuelMinTO)
-                ofpValue("Plan Gate", isd?.fuelPlanGate)
-                ofpValue("REMF", isd?.fuelREMF)
+                ofpValue("TOW L", isd.towLimit)
+                ofpValue("LW", isd.lw)
+                ofpValue("Flight Time", isd.flightTime)
+                ofpValue("Alternate", isd.alternate)
+                ofpValue("Alt Fuel", isd.fuelAlternate)
+                ofpValue("Min TO", isd.fuelMinTO)
+                ofpValue("Plan Gate", isd.fuelPlanGate)
+                ofpValue("REMF", isd.fuelREMF)
             }
         }.fileImporter(isPresented: $filePickerIsPresented,
                        allowedContentTypes: [.pdf, .text]) { result in
