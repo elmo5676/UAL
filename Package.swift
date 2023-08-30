@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "UAL",
-    platforms: [.macOS(.v10_15), .iOS(.v13)],
+    platforms: [.macOS(.v10_15), .iOS(.v15)],
     products: [
         .library(
             name: "UAL",

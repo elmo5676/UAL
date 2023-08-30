@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import UIKit
 
 public struct OFPView: View {
     
@@ -24,6 +25,8 @@ public struct OFPView: View {
             Text(value ?? "UNK")
         }.padding(.horizontal)
     }
+    
+    @State var filePickerIsPresented = false
     
     public var body: some View {
         VStack {
@@ -49,7 +52,16 @@ public struct OFPView: View {
                 ofpValue("Plan Gate", isd?.fuelPlanGate)
                 ofpValue("REMF", isd?.fuelREMF)
             }
+        }.fileImporter(isPresented: $filePickerIsPresented,
+                       allowedContentTypes: [.pdf, .text]) { result in
+            switch result {
+            case .success(let fileUrl):
+                print(fileUrl)
+            case .failure(let error):
+                print(error)
+            }
         }
+        
     }
     
 }
